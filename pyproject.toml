@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "gene"
+version = "0.1.0"
+description = ""
+authors = ["OpenAI <ops@example.com>"]
+readme = "README.md"
+packages = [{include = "gene", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.0"
+black = "^24.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
