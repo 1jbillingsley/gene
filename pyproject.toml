@@ -26,3 +26,7 @@ target-version = "py311"
 [tool.black]
 line-length = 88
 target-version = ["py311"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=gene --cov-report=term-missing"
+testpaths = ["tests"]
