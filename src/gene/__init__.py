@@ -1,3 +1,5 @@
 """Gene package."""
 
-__all__ = []
+from .api import app
+
+__all__ = ["app"]
