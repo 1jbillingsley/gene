@@ -19,3 +19,18 @@ We need a single endpoint capable of receiving arbitrary messages (e.g., failed 
 - Able to ingest messages from multiple sources with minimal customization.
 - Generates accurate, actionable AI summaries and decisions.
 - New message types are integrated quickly through configuration and tool plug-ins.
+
+## Configuration
+
+The application reads settings from environment variables or a `.env` file in
+the project root. Available options include:
+
+- `LOG_LEVEL` – controls verbosity of log output. Defaults to `INFO`.
+
+Example `.env` file:
+
+```
+LOG_LEVEL=DEBUG
+```
+
+Settings are loaded at startup by `src/gene/config.py`.
