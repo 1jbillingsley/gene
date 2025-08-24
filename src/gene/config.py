@@ -31,6 +31,8 @@ class Settings:
     """Application settings."""
 
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
+    openai_api_key: str | None = os.getenv("OPENAI_API_KEY")
+    openai_model: str | None = os.getenv("OPENAI_MODEL")
 
 
 settings = Settings()

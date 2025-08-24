@@ -23,8 +23,11 @@ class OpenAIClient(Protocol):
 _client: OpenAIClient | None = None
 
 
-def set_client(client: OpenAIClient) -> None:
-    """Inject the OpenAI client used for message processing."""
+def set_client(client: OpenAIClient | None) -> None:
+    """Inject the OpenAI client used for message processing.
+
+    ``client`` may be ``None`` to reset the agent to placeholder mode.
+    """
     global _client
     _client = client
 

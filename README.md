@@ -26,11 +26,15 @@ The application reads settings from environment variables or a `.env` file in
 the project root. Available options include:
 
 - `LOG_LEVEL` – controls verbosity of log output. Defaults to `INFO`.
+- `OPENAI_API_KEY` – API key used to access OpenAI services.
+- `OPENAI_MODEL` – Default model name used for completions.
 
 Example `.env` file:
 
 ```
 LOG_LEVEL=DEBUG
+OPENAI_API_KEY=sk-your-key
+OPENAI_MODEL=gpt-4o-mini
 ```
 
 Settings are loaded at startup by `src/gene/config.py`.
