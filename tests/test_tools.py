@@ -11,3 +11,9 @@ def test_echo_tool_discovery_and_handling():
     assert tool is not None
     assert tool.handle("echo world") == "world"
     assert handle("echo hi") == "hi"
+
+
+def test_reverse_tool_discovery_and_handling():
+    tool = get_tool("reverse abc")
+    assert tool is not None
+    assert tool.handle("reverse abc") == "cba"

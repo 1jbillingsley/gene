@@ -31,3 +31,14 @@ def test_messages_endpoint_uses_injected_client():
     data = resp.json()
     assert data["reply"] == "echo: hello"
     set_client(None)
+
+
+def test_messages_endpoint_uses_tool_when_available():
+    set_client(DummyClient())
+    client = TestClient(app)
+    resp = client.post("/messages", json={"body": "reverse abc"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["reply"] == "cba"
+    assert data["metadata"] == {"tool": "reverse"}
+    set_client(None)

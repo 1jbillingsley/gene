@@ -38,3 +38,16 @@ OPENAI_MODEL=gpt-4o-mini
 ```
 
 Settings are loaded at startup by `src/gene/config.py`.
+
+## Tools
+
+`gene` includes a lightweight tool framework that dispatches messages to
+specialized handlers based on simple prefixes. The following tools are
+available out of the box:
+
+- `echo` – returns the text following the `echo ` prefix.
+- `reverse` – reverses the text following the `reverse ` prefix.
+
+Any message sent to the `/messages` endpoint that matches a tool prefix will be
+handled by that tool and the response will include metadata indicating which
+tool produced the reply.
