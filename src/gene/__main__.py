@@ -15,7 +15,7 @@ def main() -> None:
         print(f"Configuration Error: {e}")
         print("Please check your environment variables and try again.")
         return
-    
+
     uvicorn.run(
         app,
         host="0.0.0.0",

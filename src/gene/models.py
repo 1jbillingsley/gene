@@ -44,18 +44,17 @@ class ActionResult(BaseModel):
 
 class ErrorResponse(BaseModel):
     """Standardized error response format."""
-    
+
     error: str = Field(..., description="Human-readable error message")
     error_type: str = Field(..., description="Machine-readable error type identifier")
     retry_after: int | None = Field(
-        default=None, 
-        description="Seconds to wait before retrying (for rate limit errors)"
+        default=None,
+        description="Seconds to wait before retrying (for rate limit errors)",
     )
     agent_id: str | None = Field(
         default=None,
-        description="Agent identifier when error originates from Agents SDK"
+        description="Agent identifier when error originates from Agents SDK",
     )
     details: str | None = Field(
-        default=None,
-        description="Additional technical details about the error"
+        default=None, description="Additional technical details about the error"
     )

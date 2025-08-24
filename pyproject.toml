@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = [{name = "OpenAI", email = "ops@example.com"}]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "fastapi",
     "uvicorn",
@@ -12,13 +12,6 @@ dependencies = [
     "openai-agents",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "ruff>=0.3.0",
-    "black>=24.3.0",
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-]
 
 [build-system]
 requires = ["hatchling"]
@@ -26,11 +19,11 @@ build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 88
-target-version = "py311"
+target-version = "py313"
 
 [tool.black]
 line-length = 88
-target-version = ["py311"]
+target-version = ["py313"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=gene --cov-report=term-missing"
@@ -38,6 +31,8 @@ testpaths = ["tests"]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.4.1",
+    "black>=25.1.0",
+    "pytest>=8.4.1", 
     "pytest-cov>=6.2.1",
+    "ruff>=0.12.10",
 ]
