@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Protocol
 
 from .models import ActionResult, Message
+from .tools import get_tool
 
 
 class OpenAIClient(Protocol):
@@ -35,10 +36,17 @@ def set_client(client: OpenAIClient | None) -> None:
 def process_message(message: Message) -> ActionResult:
     """Process a message and return the agent's response.
 
-    If no client has been configured, a canned placeholder response is
+    If a tool is able to handle the message, it is invoked first. Otherwise,
+    if no client has been configured, a canned placeholder response is
     returned. When a real client is available, the message body is forwarded to
     it and its output is wrapped in an :class:`ActionResult`.
     """
+
+    tool = get_tool(message.body)
+    if tool is not None:
+        return ActionResult(
+            reply=tool.handle(message.body), metadata={"tool": tool.name}
+        )
 
     if _client is None:
         reply = "This is a placeholder response."
