@@ -6,11 +6,15 @@ import logging
 
 from fastapi import FastAPI, Request
 
+from .agent import process_message, set_client
 from .config import settings
-from .models import Message
+from .models import ActionResult, Message
+from .openai_client import get_client
 
 logger = logging.getLogger(__name__)
 logger.setLevel(settings.log_level)
+
+set_client(get_client())
 
 app = FastAPI()
 
@@ -36,11 +40,7 @@ async def health() -> dict[str, str]:
 
 
 @app.post("/messages")
-async def create_message(message: Message) -> dict[str, str]:
-    """Accept a message and echo its body.
+async def create_message(message: Message) -> ActionResult:
+    """Accept a message and process it via the agent."""
 
-    Validates the request payload using :class:`Message`. This endpoint is a
-    placeholder for future AI-driven processing and can be extended with
-    routing logic or tool integrations.
-    """
-    return {"body": message.body}
+    return process_message(message)

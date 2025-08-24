@@ -10,6 +10,7 @@ packages = [{include = "gene", from = "src"}]
 python = "^3.11"
 fastapi = "*"
 uvicorn = "*"
+openai = "*"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.0"
