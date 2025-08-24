@@ -1,24 +1,28 @@
-[tool.poetry]
+[project]
 name = "gene"
 version = "0.1.0"
 description = ""
-authors = ["OpenAI <ops@example.com>"]
+authors = [{name = "OpenAI", email = "ops@example.com"}]
 readme = "README.md"
-packages = [{include = "gene", from = "src"}]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openai",
+    "openai-agents",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "*"
-uvicorn = "*"
-openai = "*"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.3.0"
-black = "^24.3.0"
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.3.0",
+    "black>=24.3.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 88
@@ -31,3 +35,9 @@ target-version = ["py311"]
 [tool.pytest.ini_options]
 addopts = "--cov=gene --cov-report=term-missing"
 testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+]
